@@ -3,8 +3,15 @@ import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import mainImg from './assets/start_img.svg';
 import likelion from './assets/likelion.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Start = () => {
+  const navigate = useNavigate();
+
+  const navigateToTest = () => {
+    navigate('/test');
+  };
+
   return (
     <Wrapper>
       <Logo src={logo} />
@@ -16,7 +23,7 @@ const Start = () => {
       <MainImg src={mainImg} />
       <p>현재 100명의 위스키라이커가 참여했어요!</p>
       <ButtonContainer>
-        <button>테스트 시작하기</button>
+        <button onClick={navigateToTest}>테스트 시작하기</button>
         <button>테스트 공유하기</button>
       </ButtonContainer>
       <BottomLogo src={likelion} />
