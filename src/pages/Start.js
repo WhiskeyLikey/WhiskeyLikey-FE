@@ -76,6 +76,7 @@ const Start = () => {
 };
 
 export default Start;
+export {Logo};
 
 const Wrapper = styled.div`
   display: flex;
