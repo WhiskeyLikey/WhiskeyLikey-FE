@@ -76,7 +76,7 @@ const Start = () => {
 };
 
 export default Start;
-export {Logo};
+export {Logo, BottomLogo};
 
 const Wrapper = styled.div`
   display: flex;
