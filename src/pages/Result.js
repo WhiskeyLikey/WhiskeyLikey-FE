@@ -164,19 +164,19 @@ const Result = () => {
         <div className='magDiv'>
           <p style={{color: '#333', fontWeight:'500', fontSize:'1.5rem'}}>Recommended Magazine</p>
           <div className='mags'>
-            <Link to='/' style={{textDecoration:'none', color: 'black'}}>
+            <Link to='/magazine_1' style={{textDecoration:'none', color: 'black'}}>
               <Mag>
                 <img src={mag1}></img>
                 <div>🥃 하이볼, 나도 집에서 마셔보자!</div>
               </Mag>
             </Link>
-            <Link to='/' style={{textDecoration:'none', color: 'black'}}>
+            <Link to='/magazine_2' style={{textDecoration:'none', color: 'black'}}>
               <Mag>
                 <img src={mag2}></img>
                 <div>🥃 위린이들을 위한 위스키 마시는 법</div>
               </Mag>
             </Link>
-            <Link to='/' style={{textDecoration:'none', color: 'black'}}>
+            <Link to='/magazine_3' style={{textDecoration:'none', color: 'black'}}>
               <Mag>
                 <img src={mag3}></img>
                 <div>🌃 서울 위스키 바 추천</div>
