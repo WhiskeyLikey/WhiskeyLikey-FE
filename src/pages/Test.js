@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import ProgressBar from '../components/ProgressBar';
@@ -13,12 +13,11 @@ const Test = () => {
   const [answers, setAnswers] = useState([]);
 
   const navigate = useNavigate();
-  const navigateToLoading = () => {
-    navigate('/loading');
-  };
-  const navigateToStart = () => {
-    navigate('/');
-  };
+
+  // 선택된 답변이 추가되거나 변경될 때마다 콘솔 출력
+  useEffect(() => {
+    console.log(answers);
+  }, [answers]);
 
   // 답변 선택 시 이벤트 핸들러
   const onHandleAnswer = (answer) => {
@@ -34,9 +33,8 @@ const Test = () => {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       // 마지막 질문이라면 로딩 페이지로
-      navigateToLoading();
+      navigate('/loading', answers); // 선택된 답변 데이터 같이 넘기기
     }
-    console.log(answers);
   };
 
   // 이전 문제로 되돌리는 이벤트 핸들러
@@ -45,7 +43,7 @@ const Test = () => {
       setCurrentQuestionIndex((prev) => prev - 1);
     } else {
       // 첫번째 질문이라면 시작 페이지로
-      navigateToStart();
+      navigate('/');
     }
   };
 
