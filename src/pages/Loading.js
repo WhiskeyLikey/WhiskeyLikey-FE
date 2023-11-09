@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 import { BottomLogo, Logo } from './Start';
 import logo from './assets/logo.svg';
 import cup from './assets/cup.svg';
@@ -9,6 +10,18 @@ import bub3 from './assets/Ellipse3.svg';
 import likelion from './assets/likelion.svg';
 
 const Loading = () => {
+  const navigator=useNavigate();
+
+  useEffect(()=>{
+    // 3초 후 result 경로로 이동
+    const timer=setTimeout(()=>{
+      navigator('/result');
+    },4000);
+
+    // 컴포넌트가 언마운트될 때 타이머 해제
+    return ()=>clearTimeout(timer);
+  },[history]);
+
   return (
     <Wrapper>
       <Logo src={logo}/>
