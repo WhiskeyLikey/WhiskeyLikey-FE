@@ -21,6 +21,9 @@ import { useLocation, Link } from 'react-router-dom';
 const { Kakao } = window;
 
 const Result = () => {
+  const location = useLocation();
+  const receiveData = location.state.arrayProps;
+
   // 이미지 저장
   const cardRef = useRef();
   const onImgDownload = () => {
@@ -32,7 +35,6 @@ const Result = () => {
 
   // 링크 복사
   const baseUrl = ''; //서버url
-  const location = useLocation();
   const handleCopyClipBoard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -52,6 +54,8 @@ const Result = () => {
     Kakao.cleanup();
     Kakao.init('2876a318025229258708805024d1db25'); // js키
     console.log(Kakao.isInitialized()); // 잘 적용되면 true 반환
+
+    console.log('receieved on Result: ', receiveData);
   }, []);
 
   const shareKakao = async () => {
