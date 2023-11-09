@@ -16,6 +16,7 @@ import mag1 from './assets/mag1.png';
 import mag2 from './assets/mag2.png';
 import mag3 from './assets/mag3.png';
 import likelion from './assets/likelion.svg';
+import returnIc from './assets/return.svg';
 import { BottomLogo, Logo } from './Start';
 import domtoimage from 'dom-to-image';
 import {saveAs} from 'file-saver';
@@ -184,6 +185,11 @@ const Result = () => {
             </Link>
           </div>
         </div>
+        <TestAgainBtn>
+          <Link to='/'>
+          <img src={returnIc}></img>&emsp;테스트 다시하기
+          </Link>
+        </TestAgainBtn>
         <BottomLogo src={likelion} style={{marginBottom:'1rem'}}/>
     </Wrapper>
   );
@@ -350,3 +356,30 @@ const Mag=styled.div`
     justify-content: center;
   }
 `;
+
+const TestAgainBtn=styled.button`
+width: 318px;
+height: 55px;
+padding: 1.5rem;
+background: #785440;
+color: #fff;
+
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+font-size: 1.125rem;
+font-weight: 700;
+
+border: none;
+border-radius: 15px;
+
+&:hover {
+  cursor: pointer;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+`
