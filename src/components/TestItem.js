@@ -3,51 +3,51 @@ import styled from 'styled-components';
 
 const TwoAnswer = ({ answers, onAnswer, selectedAnswer }) => {
   return (
-    <TwoBtn>
-      <SelectedBtn
+    <TwoBtnContainer>
+      <TwoBtn
         selected={selectedAnswer === answers[0]}
         onClick={() => onAnswer(answers[0])}
       >
         {answers[0]}
-      </SelectedBtn>
-      <SelectedBtn
+      </TwoBtn>
+      <TwoBtn
         selected={selectedAnswer === answers[1]}
         onClick={() => onAnswer(answers[1])}
       >
         {answers[1]}
-      </SelectedBtn>
-    </TwoBtn>
+      </TwoBtn>
+    </TwoBtnContainer>
   );
 };
 
 const FourAnswer = ({ answers, onAnswer, selectedAnswer }) => {
   return (
-    <FourBtn>
-      <SelectedBtn
+    <FourBtnContainer>
+      <FourBtn
         selected={selectedAnswer === answers[0]}
         onClick={() => onAnswer(answers[0])}
       >
         {answers[0]}
-      </SelectedBtn>
-      <SelectedBtn
+      </FourBtn>
+      <FourBtn
         selected={selectedAnswer === answers[1]}
         onClick={() => onAnswer(answers[1])}
       >
         {answers[1]}
-      </SelectedBtn>
-      <SelectedBtn
+      </FourBtn>
+      <FourBtn
         selected={selectedAnswer === answers[2]}
         onClick={() => onAnswer(answers[2])}
       >
         {answers[2]}
-      </SelectedBtn>
-      <SelectedBtn
+      </FourBtn>
+      <FourBtn
         selected={selectedAnswer === answers[3]}
         onClick={() => onAnswer(answers[3])}
       >
         {answers[3]}
-      </SelectedBtn>
-    </FourBtn>
+      </FourBtn>
+    </FourBtnContainer>
   );
 };
 
@@ -67,7 +67,9 @@ const TestItem = ({ data, selectedAnswer, onAnswer }) => {
         <h3>Q.0{data.id}</h3>
         <pre style={{ fontFamily: 'Arial, sans-serif' }}>{data.question}</pre>
       </Question>
-      <Image src={data.img} />
+      <ImageContainer>
+        <Image src={data.img} />
+      </ImageContainer>
       <Answer>
         {answers.length > 2 ? (
           <FourAnswer
@@ -89,44 +91,81 @@ const TestItem = ({ data, selectedAnswer, onAnswer }) => {
 
 export default TestItem;
 
-const TwoBtn = styled.div`
+const TwoBtnContainer = styled.div`
   display: flex;
   flex-direction: column;
-  button {
-    background: #fff;
-    color: #785440 !important;
-    border: none;
-    border-radius: 15px;
-    width: 320px;
-    height: 48px;
-    box-shadow:
-      0 4px 4px rgba(0, 0, 0, 0.1),
-      0 4px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-weight: 600;
-  }
+  align-items: center;
   button + button {
     margin-top: 12px;
   }
 `;
 
-const FourBtn = styled.div`
+const TwoBtn = styled.button`
+  width: 320px;
+  height: 48px;
+  background: #fff;
+  color: #785440 !important;
+  border: none;
+  border-radius: 15px;
+  box-shadow:
+    0 4px 4px rgba(0, 0, 0, 0.1),
+    0 4px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+
+  ${(props) =>
+    props.selected &&
+    `
+      width: 328px !important;
+      height: 56px !important;
+      background: #785440;
+      color: #fff !important;
+    `}
+
+  transition: 3s;
+  &:active {
+    width: 328px;
+    height: 56px;
+    background: #785440;
+    color: #fff !important;
+  }
+`;
+
+const FourBtnContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 12px;
-  button {
-    background: #fff;
-    color: #785440 !important;
-    border: none;
-    border-radius: 15px;
-    width: 150px;
-    height: 48px;
-    box-shadow:
-      0 4px 4px rgba(0, 0, 0, 0.1),
-      0 4px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-weight: 600;
+`;
+
+const FourBtn = styled.button`
+  width: 150px;
+  height: 48px;
+  background: #fff;
+  color: #785440 !important;
+  border: none;
+  border-radius: 15px;
+  box-shadow:
+    0 4px 4px rgba(0, 0, 0, 0.1),
+    0 4px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+
+  ${(props) =>
+    props.selected &&
+    `
+      width: 158px !important;
+      height: 56px !important;
+      background: #785440;
+      color: #fff !important;
+    `}
+
+  transition: 3s;
+  &:active {
+    width: 158px;
+    height: 56px;
+    background: #785440;
+    color: #fff !important;
   }
 `;
 
@@ -155,34 +194,42 @@ const Question = styled.div`
   }
 `;
 
-const Image = styled.img`
+const ImageContainer = styled.div`
   width: 240px;
-  margin-top: 20px;
+  height: 244px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 100%;
 `;
 
 const Answer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  /* button {
-    ${(props) =>
-    props.selected &&
-    `
-        width: 180px;
-        height: 56px;
-        background: #785440;
-        color: #fff;
-      `}
-  } */
 `;
 
-const SelectedBtn = styled.button`
-  ${(props) =>
-    props.selected &&
-    `
-      width: 180px;
-      height: 56px;
-      background: #785440;
-      color: #fff;
-    `}
-`;
+// const SelectedBtn = styled.button`
+//   background: #fff;
+//   color: #785440 !important;
+//   border: none;
+//   border-radius: 15px;
+//   box-shadow:
+//     0 4px 4px rgba(0, 0, 0, 0.1),
+//     0 4px 4px rgba(0, 0, 0, 0.1);
+//   font-size: 16px;
+//   font-weight: 600;
+//   height: 48px;
+
+//   ${(props) =>
+//     props.selected &&
+//     `
+//       width: 336px !important;
+//       height: 56px !important;
+//       background: #785440;
+//       color: #fff !important;
+//     `}
+// `;
