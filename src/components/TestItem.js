@@ -4,16 +4,10 @@ import styled from 'styled-components';
 const TwoAnswer = ({ answers, onAnswer, selectedAnswer }) => {
   return (
     <TwoBtnContainer>
-      <TwoBtn
-        selected={selectedAnswer === answers[0]}
-        onClick={() => onAnswer(answers[0])}
-      >
+      <TwoBtn selected={selectedAnswer === 'Y'} onClick={() => onAnswer('Y')}>
         {answers[0]}
       </TwoBtn>
-      <TwoBtn
-        selected={selectedAnswer === answers[1]}
-        onClick={() => onAnswer(answers[1])}
-      >
+      <TwoBtn selected={selectedAnswer === 'N'} onClick={() => onAnswer('N')}>
         {answers[1]}
       </TwoBtn>
     </TwoBtnContainer>
@@ -23,28 +17,16 @@ const TwoAnswer = ({ answers, onAnswer, selectedAnswer }) => {
 const FourAnswer = ({ answers, onAnswer, selectedAnswer }) => {
   return (
     <FourBtnContainer>
-      <FourBtn
-        selected={selectedAnswer === answers[0]}
-        onClick={() => onAnswer(answers[0])}
-      >
+      <FourBtn selected={selectedAnswer === 'B'} onClick={() => onAnswer('B')}>
         {answers[0]}
       </FourBtn>
-      <FourBtn
-        selected={selectedAnswer === answers[1]}
-        onClick={() => onAnswer(answers[1])}
-      >
+      <FourBtn selected={selectedAnswer === 'F'} onClick={() => onAnswer('F')}>
         {answers[1]}
       </FourBtn>
-      <FourBtn
-        selected={selectedAnswer === answers[2]}
-        onClick={() => onAnswer(answers[2])}
-      >
+      <FourBtn selected={selectedAnswer === 'S'} onClick={() => onAnswer('S')}>
         {answers[2]}
       </FourBtn>
-      <FourBtn
-        selected={selectedAnswer === answers[3]}
-        onClick={() => onAnswer(answers[3])}
-      >
+      <FourBtn selected={selectedAnswer === 'T'} onClick={() => onAnswer('T')}>
         {answers[3]}
       </FourBtn>
     </FourBtnContainer>
@@ -95,6 +77,8 @@ const TwoBtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 320px;
+  height: 108px;
   button + button {
     margin-top: 12px;
   }
@@ -134,6 +118,8 @@ const FourBtnContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 12px;
+  width: 320px;
+  height: 108px;
 `;
 
 const FourBtn = styled.button`
@@ -207,25 +193,3 @@ const Answer = styled.div`
   flex-direction: column;
   margin-top: 40px;
 `;
-
-// const SelectedBtn = styled.button`
-//   background: #fff;
-//   color: #785440 !important;
-//   border: none;
-//   border-radius: 15px;
-//   box-shadow:
-//     0 4px 4px rgba(0, 0, 0, 0.1),
-//     0 4px 4px rgba(0, 0, 0, 0.1);
-//   font-size: 16px;
-//   font-weight: 600;
-//   height: 48px;
-
-//   ${(props) =>
-//     props.selected &&
-//     `
-//       width: 336px !important;
-//       height: 56px !important;
-//       background: #785440;
-//       color: #fff !important;
-//     `}
-// `;
