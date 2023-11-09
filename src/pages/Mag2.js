@@ -8,7 +8,7 @@ const Mag2 = () => {
     <div>
       <Wrapper>
         <TopBar>
-          <Logo src={logo}/>
+          <Logo src={logo} />
         </TopBar>
         <h2>🥃 위린이들을 위한 위스키 마시는 법</h2>
       </Wrapper>
