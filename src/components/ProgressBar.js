@@ -22,8 +22,8 @@ const CurrentGage = styled.div`
   height: 16px;
   border-radius: 50px;
   background: rgba(120, 84, 64, 0.7);
-  ${(props) =>
-    `
-    width: ${props.progress}%;
-  `}
+  width: ${(props) => `${props.progress}%`};
+  transition-property: width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
 `;
