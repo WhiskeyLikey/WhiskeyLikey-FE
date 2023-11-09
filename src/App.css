@@ -3,6 +3,64 @@ body {
   padding-top: 40px;
 }
 
+/* mobile - result style */
+@media all and (max-width:430px){
+
+}
+
+/* pc - result style */
+@media all and (min-width:431px){
+
+  .rowDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 1000px;
+  }
+
+  .resultTxt {
+    font-size: 1.25rem;
+  }
+
+  .div-1 {
+    width: 50%;
+    /* border: 1px solid black; */
+  }
+
+  .div-2  {
+    width: 50%;
+    /* border: 1px solid orange; */
+  }
+
+  .ctrlDiv {
+
+    padding-top: 3rem;
+  }
+
+  .magDiv {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 3rem;
+  }
+
+  .magDiv p {
+    align-self: flex-start;
+  }
+
+  .mags {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mags div {
+    margin: 0 0.5rem;
+  }
+
+}
+
+
+/* animations */
 @keyframes fadein {
   from {
       opacity: 0;
