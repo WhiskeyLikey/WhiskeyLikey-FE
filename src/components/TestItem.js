@@ -116,8 +116,6 @@ const TwoBtn = styled.button`
   ${(props) =>
     props.selected &&
     `
-      width: 328px !important;
-      height: 56px !important;
       background: #785440;
       color: #fff !important;
     `}
@@ -126,8 +124,6 @@ const TwoBtn = styled.button`
     transition: transform 0.15s linear;
     transform-origin: 50% 50%;
     transform: scale(1.03);
-    /* width: 328px;
-    height: 56px; */
     background: #785440;
     color: #fff !important;
   }
@@ -156,8 +152,6 @@ const FourBtn = styled.button`
   ${(props) =>
     props.selected &&
     `
-      width: 158px !important;
-      height: 56px !important;
       background: #785440;
       color: #fff !important;
     `}
@@ -166,8 +160,6 @@ const FourBtn = styled.button`
     transition: transform 0.15s linear;
     transform-origin: 50% 50%;
     transform: scale(1.03);
-    /* width: 328px;
-    height: 56px; */
     background: #785440;
     color: #fff !important;
   }
