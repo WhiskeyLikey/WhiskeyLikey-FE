@@ -24,60 +24,62 @@ const Loading = () => {
 
   return (
     <Wrapper>
-      <Logo src={logo}/>
-      <h3>당신에게 맞는<br/>위스키를 제조하는 중 ...</h3>
+      <Logo src={logo} />
+      <h3>
+        당신에게 맞는
+        <br />
+        위스키를 제조하는 중 ...
+      </h3>
       <div>
         <img src={bub1}></img>
         <img src={bub2}></img>
         <img src={bub3}></img>
       </div>
       <img src={cup}></img>
-      <BottomLogo src={likelion}/>
+      <BottomLogo src={likelion} />
     </Wrapper>
   );
 };
 
-const Wrapper=styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
-
-h3 {
-  margin-top: 6rem;
-  color: #333;
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-
-div {
-
-  position: relative;
-  margin-top: 10rem;
-
-  img {
-    position: absolute;
-    animation: fadein 0.5s infinite, up 8s infinite ease-in;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  h3 {
+    margin-top: 6rem;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 500;
   }
+  div {
+    position: relative;
+    margin-top: 10rem;
 
-  img:nth-of-type(1) {
-    left: -50px;
-    bottom: 40px;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-  } 
+    img {
+      position: absolute;
+      animation:
+        fadein 0.5s infinite,
+        up 8s infinite ease-in;
+    }
 
-  img:nth-of-type(2) {
-    left: 60px;
-    animation-duration: 3s;
-    animation-delay: 1s;
+    img:nth-of-type(1) {
+      left: -50px;
+      bottom: 40px;
+      animation-duration: 3s;
+      animation-delay: 0.5s;
+    }
+
+    img:nth-of-type(2) {
+      left: 60px;
+      animation-duration: 3s;
+      animation-delay: 1s;
+    }
+    img:nth-of-type(3) {
+      left: -85px;
+      animation-duration: 4s;
+    }
   }
-  img:nth-of-type(3) {
-    left: -85px;
-    animation-duration: 4s;
-  }
-  
-}
 `;
 
 export default Loading;

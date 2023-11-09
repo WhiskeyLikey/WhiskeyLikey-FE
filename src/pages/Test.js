@@ -6,10 +6,19 @@ import TestItem from '../components/TestItem';
 import likelion from './assets/likelion.svg';
 import prevBtn from './assets/prev_btn.svg';
 import testData from '../Question.json';
+import { useNavigate } from 'react-router-dom';
 
 const Test = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
+
+  const navigate = useNavigate();
+  const navigateToLoading = () => {
+    navigate('/loading');
+  };
+  const navigateToStart = () => {
+    navigate('/');
+  };
 
   // 답변 선택 시 이벤트 핸들러
   const onHandleAnswer = (answer) => {
@@ -23,13 +32,20 @@ const Test = () => {
     // 마지막 질문이 아니라면 다음 문제로 넘어가도록
     if (currentQuestionIndex < testData.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      // 마지막 질문이라면 로딩 페이지로
+      navigateToLoading();
     }
+    console.log(answers);
   };
 
   // 이전 문제로 되돌리는 이벤트 핸들러
   const onPrev = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
+    } else {
+      // 첫번째 질문이라면 시작 페이지로
+      navigateToStart();
     }
   };
 
@@ -70,6 +86,7 @@ const TopBar = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: -4px;
+  padding-right: 24px;
   img {
     width: 20px;
     height: 20px;

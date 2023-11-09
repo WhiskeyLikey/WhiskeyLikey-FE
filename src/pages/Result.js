@@ -197,7 +197,7 @@ const Result = () => {
 
 export default Result;
 
-const Wrapper=styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,7 +234,7 @@ const Wrapper=styled.div`
     width: 376px;
     
     p {
-      color: #3F3F3F;
+      color: #3f3f3f;
       font-size: 0.8rem;
       font-weight: 500;
     }
@@ -248,7 +248,7 @@ const Wrapper=styled.div`
   // background: white;
 `;
 
-const MainImgDiv=styled.div`
+const MainImgDiv = styled.div`
   width: 355px;
   height: 321px;
 
@@ -263,12 +263,11 @@ const MainImgDiv=styled.div`
     object-fit: contain;
     
   }
+`;
 
 `
-
-const Description=styled.div`
+const Description = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: column;
 
@@ -291,7 +290,7 @@ const Description=styled.div`
     padding: 0.5rem;
     box-sizing: border-box;
 
-    background: rgba(225, 186, 101, 0.70);
+    background: rgba(225, 186, 101, 0.7);
     border-radius: 20px;
 
     display: flex;
@@ -304,9 +303,9 @@ const Description=styled.div`
       margin: 0 0.5rem;
     }
   }
-`
+`;
 
-const CtrlDiv=styled.div`
+const CtrlDiv = styled.div`
   display: flex;
   flex-direction: row;
   margin: 1.5rem auto;
@@ -323,12 +322,10 @@ const CtrlDiv=styled.div`
     img:hover {
       cursor: pointer;
     }
-
   }
+`;
 
-`
-
-const Mag=styled.div`
+const Mag = styled.div`
   width: 307px;
   height: 219px;
   border-radius: 20px;
