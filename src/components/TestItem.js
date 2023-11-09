@@ -122,10 +122,12 @@ const TwoBtn = styled.button`
       color: #fff !important;
     `}
 
-  transition: 3s;
-  &:active {
-    width: 328px;
-    height: 56px;
+  &:hover {
+    transition: transform 0.15s linear;
+    transform-origin: 50% 50%;
+    transform: scale(1.03);
+    /* width: 328px;
+    height: 56px; */
     background: #785440;
     color: #fff !important;
   }
@@ -160,10 +162,12 @@ const FourBtn = styled.button`
       color: #fff !important;
     `}
 
-  transition: 3s;
-  &:active {
-    width: 158px;
-    height: 56px;
+  &:hover {
+    transition: transform 0.15s linear;
+    transform-origin: 50% 50%;
+    transform: scale(1.03);
+    /* width: 328px;
+    height: 56px; */
     background: #785440;
     color: #fff !important;
   }
