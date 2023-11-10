@@ -22,7 +22,7 @@
   },
   {
     "id": 4,
-    "question": "내가 좋아하는 향과 맛은?\n(최대 두 가지 선택)",
+    "question": "내가 좋아하는 향과 맛은?",
     "img": "https://raw.githubusercontent.com/MinJaeSon/assets/5f3173a5186d382dacd1f8a15418cdbf7b7c94e8/q4.svg",
     "answer1": "바닐라",
     "answer2": "과일",
