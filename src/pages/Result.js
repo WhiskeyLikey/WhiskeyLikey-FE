@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import drops from './assets/drops.svg';
 import titlegraphic from './assets/Graphic_Elements.svg';
-import honey from './assets/honey.svg';
-import smoky from './assets/smoky.svg';
-import vanilla from './assets/vanilla.svg';
 import whiskey from './assets/whiskey.svg';
-import ballen from './assets/ballen.png';
 import save from './assets/save.svg';
 import intersect from './assets/Intersect.svg';
 import kakao from './assets/kakaotalk.svg';
@@ -25,8 +21,8 @@ import {useLocation, Link} from 'react-router-dom';
 const { Kakao } = window;
  
 const Result = () => {
-  const {state}=useLocation();
-  console.log(state.message);
+  const location=useLocation();
+  const receivedData=location.state.arrayProps;
 
   // 이미지 저장
   const cardRef=useRef();
@@ -37,7 +33,7 @@ const Result = () => {
 
   // 링크 복사
   const baseUrl=''; //서버url
-  const location=useLocation();
+  // const location=useLocation();
   const handleCopyClipBoard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -49,13 +45,31 @@ const Result = () => {
   };
 
   // 카카오톡 공유
+  // eslint-disable-next-line no-unused-vars
   const appURI = ''; // 배포된 서비스 도메인
   const localURI = window.location.href; // localhost:3000
+  const [data, setData]=useState();
 
   useEffect(() => {
     Kakao.cleanup();
     Kakao.init('2876a318025229258708805024d1db25'); // js키
     console.log(Kakao.isInitialized()); // 잘 적용되면 true 반환
+
+    //api
+    const fetchData=async()=>{
+      try {
+        // 서버 url
+        const serverUrl='http://127.0.0.1:8000/';
+        const endpoint='v1/result';
+
+        const response=await axios.post(`${serverUrl}${endpoint}`, receivedData);
+        setData(response.data);
+  
+      } catch(error){
+        console.error(error);
+      }
+    };
+    fetchData();
   }, []);
 
   const shareKakao = async () => {
@@ -90,24 +104,7 @@ const Result = () => {
     }
   };
   
-  // api
-  // const [data, setData]=useState({});
-  // useEffect(()=>{
-  //   const fetchData=async()=>{
-  //     try {
-  //       // 서버 url
-  //       const serverUrl='http://127.0.0.1:8000/';
-  //       const endpoint='v1/result';
-
-  //       const response=await axios.post(`${serverUrl}${endpoint}`);
-  //       setData(response.data);
   
-  //     } catch(error){
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchData();
-  // },[])
 
   return (
     <Wrapper className='wrap'>
@@ -117,12 +114,12 @@ const Result = () => {
           <div className='div-1'>
             <h3>나에게 꼭 맞는 위스키는</h3>
             <MainImgDiv>
-              {/* <img src={data.whiskey_image} className='whiskey'></img> */}
+              <img src={data.whiskey_image} className='whiskey'></img>
               <img src={whiskey} className='whiskey'></img>
             </MainImgDiv>
             <div className='resultTxt'>
-              {/* <h3 className='name'>{data.name}</h3>
-              <p>{data.description}</p> */}
+              <h3 className='name'>{data.name}</h3>
+              <p>{data.description}</p>
             </div>
           </div>
           <div className='div-2'>
@@ -133,9 +130,9 @@ const Result = () => {
                 <img src={titlegraphic}></img>
               </div>
               <div className='pics'>
-                {/* {data.flavor_images.map((image, index)=>(
+                {data.flavor_images.map((image, index)=>(
                   <img key={index} src={image}></img>
-                ))} */}
+                ))}
               </div>
             </Description>
             <Description>
@@ -145,9 +142,9 @@ const Result = () => {
                 <img src={titlegraphic}></img>
               </div>
               <div className='pics'>
-              {/* {data.drink_images.map((image, index)=>(
+              {data.drink_images.map((image, index)=>(
                   <img key={index} src={image}></img>
-                ))} */}
+                ))}
               </div>
             </Description>
           </div>
