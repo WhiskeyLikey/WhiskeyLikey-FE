@@ -81,7 +81,7 @@ const Start = () => {
         위스키는?
       </h3>
       <MainImg src={mainImg} />
-      <p>현재 {userNum}명의 위스키라이커가 참여했어요!</p>
+      <p>현재 {userNum.number}명의 위스키라이커가 참여했어요!</p>
       <ButtonContainer>
         <button onClick={navigateToTest}>테스트 시작하기</button>
         <button onClick={shareKakao}>테스트 공유하기</button>
