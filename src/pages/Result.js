@@ -21,8 +21,13 @@ import { BottomLogo, Logo } from './Start';
 import domtoimage from 'dom-to-image';
 import {saveAs} from 'file-saver';
 import {useLocation, Link} from 'react-router-dom';
+
+const { Kakao } = window;
  
 const Result = () => {
+  const {state}=useLocation();
+  console.log(state.message);
+
   // 이미지 저장
   const cardRef=useRef();
   const onImgDownload=()=>{
@@ -92,9 +97,9 @@ const Result = () => {
   //     try {
   //       // 서버 url
   //       const serverUrl='http://127.0.0.1:8000/';
-  //       const endpoint='api/v1/result';
+  //       const endpoint='v1/result';
 
-  //       const response=await axios.get(`${serverUrl}${endpoint}`);
+  //       const response=await axios.post(`${serverUrl}${endpoint}`);
   //       setData(response.data);
   
   //     } catch(error){
@@ -360,9 +365,9 @@ const Mag=styled.div`
 const TestAgainBtn=styled.button`
 width: 318px;
 height: 55px;
-padding: 1.5rem;
+// padding: 1.5rem;
 background: #785440;
-color: #fff;
+// color: #fff;
 
 display: flex;
 flex-direction: row;
@@ -381,5 +386,9 @@ border-radius: 15px;
 a {
   color: #fff;
   text-decoration: none;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 `
