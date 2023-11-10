@@ -230,7 +230,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding-top: -16px;
   .img-save-area {
     display: flex;
     flex-direction: column;
@@ -254,8 +254,8 @@ const Wrapper = styled.div`
 
   h3 {
     color: #333;
-    font-size: 1.75rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   .resultTxt {

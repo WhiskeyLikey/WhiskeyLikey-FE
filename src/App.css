@@ -1,14 +1,19 @@
 body {
   background-color: #f3e4bd;
-  padding-top: 40px;
+  padding-top: 50px;
+}
+@media screen and (max-width: 500px) {
+  body {
+    padding-top: 80px;
+  }
 }
 
 /* mobile - result style */
-@media all and (max-width: 430px) {
+@media screen and (max-width: 500px) {
 }
 
 /* pc - result style */
-@media all and (min-width: 431px) {
+@media screen and (min-width: 500px) {
   .rowDiv {
     display: flex;
     flex-direction: row;
