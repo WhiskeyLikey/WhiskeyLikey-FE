@@ -1,18 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import mainImg from './assets/start_img.svg';
 import likelion from './assets/likelion.svg';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const { Kakao } = window;
 
 const Start = () => {
+  const [userNum, setUserNum] = useState(0);
   const navigate = useNavigate();
 
   const navigateToTest = () => {
     navigate('/test');
   };
+
+  useEffect(() => {
+    async function fetchUserNum() {
+      try {
+        const res = await axios.get('http://127.0.0.1:8000/api/v1/number');
+        console.log(res.data);
+        setUserNum(res.data);
+      } catch (err) {
+        console.error('Error fetching user numbers: ', err);
+      }
+    }
+
+    fetchUserNum();
+  }, []);
 
   // eslint-disable-next-line no-unused-vars
   const appURI = ''; // 배포된 서비스 도메인
@@ -65,7 +81,7 @@ const Start = () => {
         위스키는?
       </h3>
       <MainImg src={mainImg} />
-      <p>현재 100명의 위스키라이커가 참여했어요!</p>
+      <p>현재 {userNum}명의 위스키라이커가 참여했어요!</p>
       <ButtonContainer>
         <button onClick={navigateToTest}>테스트 시작하기</button>
         <button onClick={shareKakao}>테스트 공유하기</button>
