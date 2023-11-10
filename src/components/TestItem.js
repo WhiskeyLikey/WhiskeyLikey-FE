@@ -3,51 +3,33 @@ import styled from 'styled-components';
 
 const TwoAnswer = ({ answers, onAnswer, selectedAnswer }) => {
   return (
-    <TwoBtn>
-      <SelectedBtn
-        selected={selectedAnswer === answers[0]}
-        onClick={() => onAnswer(answers[0])}
-      >
+    <TwoBtnContainer>
+      <TwoBtn selected={selectedAnswer === 'Y'} onClick={() => onAnswer('Y')}>
         {answers[0]}
-      </SelectedBtn>
-      <SelectedBtn
-        selected={selectedAnswer === answers[1]}
-        onClick={() => onAnswer(answers[1])}
-      >
+      </TwoBtn>
+      <TwoBtn selected={selectedAnswer === 'N'} onClick={() => onAnswer('N')}>
         {answers[1]}
-      </SelectedBtn>
-    </TwoBtn>
+      </TwoBtn>
+    </TwoBtnContainer>
   );
 };
 
 const FourAnswer = ({ answers, onAnswer, selectedAnswer }) => {
   return (
-    <FourBtn>
-      <SelectedBtn
-        selected={selectedAnswer === answers[0]}
-        onClick={() => onAnswer(answers[0])}
-      >
+    <FourBtnContainer>
+      <FourBtn selected={selectedAnswer === 'B'} onClick={() => onAnswer('B')}>
         {answers[0]}
-      </SelectedBtn>
-      <SelectedBtn
-        selected={selectedAnswer === answers[1]}
-        onClick={() => onAnswer(answers[1])}
-      >
+      </FourBtn>
+      <FourBtn selected={selectedAnswer === 'F'} onClick={() => onAnswer('F')}>
         {answers[1]}
-      </SelectedBtn>
-      <SelectedBtn
-        selected={selectedAnswer === answers[2]}
-        onClick={() => onAnswer(answers[2])}
-      >
+      </FourBtn>
+      <FourBtn selected={selectedAnswer === 'S'} onClick={() => onAnswer('S')}>
         {answers[2]}
-      </SelectedBtn>
-      <SelectedBtn
-        selected={selectedAnswer === answers[3]}
-        onClick={() => onAnswer(answers[3])}
-      >
+      </FourBtn>
+      <FourBtn selected={selectedAnswer === 'T'} onClick={() => onAnswer('T')}>
         {answers[3]}
-      </SelectedBtn>
-    </FourBtn>
+      </FourBtn>
+    </FourBtnContainer>
   );
 };
 
@@ -67,7 +49,9 @@ const TestItem = ({ data, selectedAnswer, onAnswer }) => {
         <h3>Q.0{data.id}</h3>
         <pre style={{ fontFamily: 'Arial, sans-serif' }}>{data.question}</pre>
       </Question>
-      <Image src={data.img} />
+      <ImageContainer>
+        <Image src={data.img} />
+      </ImageContainer>
       <Answer>
         {answers.length > 2 ? (
           <FourAnswer
@@ -89,44 +73,81 @@ const TestItem = ({ data, selectedAnswer, onAnswer }) => {
 
 export default TestItem;
 
-const TwoBtn = styled.div`
+const TwoBtnContainer = styled.div`
   display: flex;
   flex-direction: column;
-  button {
-    background: #fff;
-    color: #785440 !important;
-    border: none;
-    border-radius: 15px;
-    width: 320px;
-    height: 48px;
-    box-shadow:
-      0 4px 4px rgba(0, 0, 0, 0.1),
-      0 4px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-weight: 600;
-  }
+  align-items: center;
+  width: 320px;
+  height: 108px;
   button + button {
     margin-top: 12px;
   }
 `;
 
-const FourBtn = styled.div`
+const TwoBtn = styled.button`
+  width: 320px;
+  height: 48px;
+  background: #fff;
+  color: #785440 !important;
+  border: none;
+  border-radius: 15px;
+  box-shadow:
+    0 4px 4px rgba(0, 0, 0, 0.1),
+    0 4px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+
+  ${(props) =>
+    props.selected &&
+    `
+      background: #785440;
+      color: #fff !important;
+    `}
+
+  &:hover {
+    transition: transform 0.15s linear;
+    transform-origin: 50% 50%;
+    transform: scale(1.03);
+    background: #785440;
+    color: #fff !important;
+  }
+`;
+
+const FourBtnContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 12px;
-  button {
-    background: #fff;
-    color: #785440 !important;
-    border: none;
-    border-radius: 15px;
-    width: 150px;
-    height: 48px;
-    box-shadow:
-      0 4px 4px rgba(0, 0, 0, 0.1),
-      0 4px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-weight: 600;
+  width: 320px;
+  height: 108px;
+`;
+
+const FourBtn = styled.button`
+  width: 150px;
+  height: 48px;
+  background: #fff;
+  color: #785440 !important;
+  border: none;
+  border-radius: 15px;
+  box-shadow:
+    0 4px 4px rgba(0, 0, 0, 0.1),
+    0 4px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+
+  ${(props) =>
+    props.selected &&
+    `
+      background: #785440;
+      color: #fff !important;
+    `}
+
+  &:hover {
+    transition: transform 0.15s linear;
+    transform-origin: 50% 50%;
+    transform: scale(1.03);
+    background: #785440;
+    color: #fff !important;
   }
 `;
 
@@ -155,34 +176,20 @@ const Question = styled.div`
   }
 `;
 
-const Image = styled.img`
+const ImageContainer = styled.div`
   width: 240px;
-  margin-top: 20px;
+  height: 244px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 100%;
 `;
 
 const Answer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  /* button {
-    ${(props) =>
-    props.selected &&
-    `
-        width: 180px;
-        height: 56px;
-        background: #785440;
-        color: #fff;
-      `}
-  } */
-`;
-
-const SelectedBtn = styled.button`
-  ${(props) =>
-    props.selected &&
-    `
-      width: 180px;
-      height: 56px;
-      background: #785440;
-      color: #fff;
-    `}
 `;

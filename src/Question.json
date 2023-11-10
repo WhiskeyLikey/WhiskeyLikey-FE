@@ -18,7 +18,7 @@
     "question": "마실 때의 풍미는?",
     "img": "https://raw.githubusercontent.com/MinJaeSon/assets/5f3173a5186d382dacd1f8a15418cdbf7b7c94e8/q3.svg",
     "answer1": "풍부하게 퍼지는 것이 좋다",
-    "answer2": "깔끔하게 마루리 되는 것이 좋다"
+    "answer2": "깔끔하게 마무리 되는 것이 좋다"
   },
   {
     "id": 4,
@@ -32,14 +32,14 @@
   {
     "id": 5,
     "question": "마실 때의 느낌이",
-    "img": "https://raw.githubusercontent.com/MinJaeSon/assets/5f3173a5186d382dacd1f8a15418cdbf7b7c94e8/q1.svg",
+    "img": "https://raw.githubusercontent.com/MinJaeSon/assets/4f13f7aac2035f6fea4daa922160b2a5c2efbcc4/q5.svg",
     "answer1": "부드러운 것이 좋다",
     "answer2": "타격감 있는 것이 좋다"
   },
   {
     "id": 6,
     "question": "나는 마신 후의 여운이",
-    "img": "https://raw.githubusercontent.com/MinJaeSon/assets/5f3173a5186d382dacd1f8a15418cdbf7b7c94e8/q1.svg",
+    "img": "https://raw.githubusercontent.com/MinJaeSon/assets/4f13f7aac2035f6fea4daa922160b2a5c2efbcc4/q6.svg",
     "answer1": "길게 남았으면 좋겠다",
     "answer2": "짧은 것이 좋다"
   }
