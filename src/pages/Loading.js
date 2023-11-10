@@ -52,15 +52,15 @@ const Wrapper = styled.div`
   align-items: center;
   text-align: center;
   h3 {
-    margin-top: 6rem;
+    margin-top: 4rem;
     color: #333;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
   }
   div {
     position: relative;
-    margin-top: 10rem;
-
+    margin-top: 6rem;
+    margin-bottom: 4rem;
     img {
       position: absolute;
       animation:

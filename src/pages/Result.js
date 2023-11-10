@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import drops from './assets/drops.svg';
 import titlegraphic from './assets/Graphic_Elements.svg';
-import whiskey from './assets/whiskey.svg';
 import save from './assets/save.svg';
 import intersect from './assets/Intersect.svg';
 import kakao from './assets/kakaotalk.svg';
@@ -13,7 +12,7 @@ import mag2 from './assets/mag2.png';
 import mag3 from './assets/mag3.png';
 import likelion from './assets/likelion.svg';
 import returnIc from './assets/return.svg';
-import { BottomLogo, Logo } from './Start';
+import { Logo } from './Start';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import { useLocation, Link } from 'react-router-dom';
@@ -21,8 +20,10 @@ import { useLocation, Link } from 'react-router-dom';
 const { Kakao } = window;
 
 const Result = () => {
+  const [resultData, setResultData] = useState({});
+
   const location = useLocation();
-  const receiveData = location.state.arrayProps;
+  const receivedData = location.state.arrayProps;
 
   // 이미지 저장
   const cardRef = useRef();
@@ -34,9 +35,7 @@ const Result = () => {
   };
 
   // 링크 복사
-  const baseUrl=''; //서버url
-  // const location=useLocation();
-
+  const baseUrl = ''; //서버url
   const handleCopyClipBoard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -51,29 +50,26 @@ const Result = () => {
   // eslint-disable-next-line no-unused-vars
   const appURI = ''; // 배포된 서비스 도메인
   const localURI = window.location.href; // localhost:3000
-  const [data, setData]=useState();
 
   useEffect(() => {
+    async function fetchResult() {
+      try {
+        const res = await axios.post('http://127.0.0.1:8000/api/v1/result', {
+          result: receivedData,
+        });
+        console.log(res.data);
+        setResultData(res.data);
+      } catch (err) {
+        console.log('Error fetching result: ', err);
+      }
+    }
+    fetchResult();
+
     Kakao.cleanup();
     Kakao.init('2876a318025229258708805024d1db25'); // js키
     console.log(Kakao.isInitialized()); // 잘 적용되면 true 반환
 
-
-    //api
-    const fetchData=async()=>{
-      try {
-        // 서버 url
-        const serverUrl='http://127.0.0.1:8000/';
-        const endpoint='v1/result';
-
-        const response=await axios.post(`${serverUrl}${endpoint}`, receivedData);
-        setData(response.data);
-  
-      } catch(error){
-        console.error(error);
-      }
-    };
-    fetchData();
+    console.log('receieved on Result: ', receivedData);
   }, []);
 
   const shareKakao = async () => {
@@ -108,7 +104,6 @@ const Result = () => {
     }
   };
 
-
   return (
     <Wrapper className="wrap">
       <div
@@ -121,12 +116,11 @@ const Result = () => {
           <div className="div-1">
             <h3>나에게 꼭 맞는 위스키는</h3>
             <MainImgDiv>
-              <img src={data.wiskey_image} className='whiskey'></img>
-              {/* <img src={whiskey} className='whiskey'></img> */}
+              <img src={resultData?.whiskey_image} className="whiskey"></img>
             </MainImgDiv>
-            <div className='resultTxt'>
-              <h3 className='name'>{data.name}</h3>
-              <p>{data.description}</p>
+            <div className="resultTxt">
+              <h3 className="name">{resultData?.name}</h3>
+              <p>{resultData?.description}</p>
             </div>
           </div>
           <div className="div-2">
@@ -136,10 +130,11 @@ const Result = () => {
                 <p>Flavor &amp; Aroma</p>
                 <img src={titlegraphic}></img>
               </div>
-              <div className='pics'>
-                {data.flavor_images.map((image, index)=>(
-                  <img key={index} src={image}></img>
-                ))}
+              <div className="pics">
+                {resultData?.flavor_images &&
+                  resultData.flavor_images.map((image, index) => (
+                    <img key={index} src={image}></img>
+                  ))}
               </div>
             </Description>
             <Description>
@@ -148,10 +143,11 @@ const Result = () => {
                 <p>How to drink?</p>
                 <img src={titlegraphic}></img>
               </div>
-              <div className='pics'>
-              {data.drink_images.map((image, index)=>(
-                  <img key={index} src={image}></img>
-                ))}
+              <div className="pics">
+                {resultData?.drink_images &&
+                  resultData.drink_images.map((image, index) => (
+                    <img key={index} src={image}></img>
+                  ))}
               </div>
             </Description>
           </div>
@@ -230,7 +226,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding-top: -16px;
   .img-save-area {
     display: flex;
     flex-direction: column;
@@ -254,8 +250,8 @@ const Wrapper = styled.div`
 
   h3 {
     color: #333;
-    font-size: 1.75rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   .resultTxt {
@@ -380,35 +376,35 @@ const Mag = styled.div`
   }
 `;
 
-const TestAgainBtn=styled.button`
-width: 318px;
-height: 55px;
-// padding: 1.5rem;
-background: #785440;
-// color: #fff;
-
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-font-size: 1.125rem;
-font-weight: 700;
-
-border: none;
-border-radius: 15px;
-
-&:hover {
-  cursor: pointer;
-}
-
-a {
+const TestAgainBtn = styled.button`
+  width: 318px;
+  height: 55px;
+  padding: 1.5rem;
+  background: #785440;
   color: #fff;
-  text-decoration: none;
 
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-`
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 700;
 
+  border: none;
+  border-radius: 15px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+`;
+
+const BottomLogo = styled.img`
+  padding-top: 48px;
+  width: 176px;
+  height: 18px;
+`;

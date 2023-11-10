@@ -1,18 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import mainImg from './assets/start_img.svg';
 import likelion from './assets/likelion.svg';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const { Kakao } = window;
 
 const Start = () => {
+  const [userNum, setUserNum] = useState(0);
   const navigate = useNavigate();
 
   const navigateToTest = () => {
     navigate('/test');
   };
+
+  useEffect(() => {
+    async function fetchUserNum() {
+      try {
+        const res = await axios.get('http://127.0.0.1:8000/api/v1/number');
+        console.log(res.data);
+        setUserNum(res.data);
+      } catch (err) {
+        console.error('Error fetching user numbers: ', err);
+      }
+    }
+
+    fetchUserNum();
+  }, []);
 
   // eslint-disable-next-line no-unused-vars
   const appURI = ''; // 배포된 서비스 도메인
@@ -65,7 +81,7 @@ const Start = () => {
         위스키는?
       </h3>
       <MainImg src={mainImg} />
-      <p>현재 100명의 위스키라이커가 참여했어요!</p>
+      <p>현재 {userNum.number}명의 위스키라이커가 참여했어요!</p>
       <ButtonContainer>
         <button onClick={navigateToTest}>테스트 시작하기</button>
         <button onClick={shareKakao}>테스트 공유하기</button>
@@ -93,6 +109,9 @@ const Wrapper = styled.div`
     color: rgba(51, 51, 51, 0.9);
     margin-top: 40px;
     margin-bottom: 20px;
+    @media screen and (max-width: 500px) {
+      margin-top: 60px;
+    }
   }
 `;
 
@@ -102,12 +121,16 @@ const Logo = styled.img`
 
 const MainImg = styled.img`
   width: 200px;
-  margin-top: 16px;
+  margin-top: 28px;
+  @media screen and (max-width: 500px) {
+    margin-top: 36px;
+  }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 8px;
   button {
     border: none;
     border-radius: 15px;
@@ -130,10 +153,18 @@ const ButtonContainer = styled.div`
   button + button {
     margin-top: 12px;
   }
+  @media screen and (max-width: 500px) {
+    margin-top: 20px;
+  }
 `;
 
 const BottomLogo = styled.img`
-  margin-top: 48px;
+  padding-top: 48px;
   width: 176px;
   height: 18px;
+  position: absolute;
+  bottom: 28px;
+  @media screen and (max-width: 500px) {
+    margin-top: 60px;
+  }
 `;

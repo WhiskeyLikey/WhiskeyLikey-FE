@@ -16,6 +16,9 @@ const TotalGage = styled.div`
   height: 16px;
   border-radius: 50px;
   background: rgba(217, 217, 217, 0.5);
+  @media screen and (max-width: 500px) {
+    width: 300px;
+  }
 `;
 
 const CurrentGage = styled.div`

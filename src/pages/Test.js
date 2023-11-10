@@ -15,8 +15,8 @@ const Test = () => {
 
   const navigate = useNavigate();
 
-  // 선택된 답변이 추가되거나 변경될 때마다 콘솔 출력
   useEffect(() => {
+    // 선택된 답변이 추가되거나 변경될 때마다 콘솔 출력
     console.log(answers);
 
     // 마지막 질문의 답변을 선택했는지 확인 (answers가 완전히 업데이트 된 후 넘길 수 있도록)
@@ -81,6 +81,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 500px) {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
 `;
 
 const Logo = styled.img`
@@ -102,7 +106,9 @@ const TopBar = styled.div`
 `;
 
 const BottomLogo = styled.img`
-  margin-top: 48px;
+  padding-top: 48px;
+  position: absolute;
+  bottom: 28px;
   width: 176px;
   height: 18px;
 `;
