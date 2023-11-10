@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-// import axios from 'axios';
+import React, { useRef, useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import logo from './assets/logo.svg';
 import drops from './assets/drops.svg';
@@ -34,7 +34,9 @@ const Result = () => {
   };
 
   // 링크 복사
-  const baseUrl = ''; //서버url
+  const baseUrl=''; //서버url
+  // const location=useLocation();
+
   const handleCopyClipBoard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -49,13 +51,29 @@ const Result = () => {
   // eslint-disable-next-line no-unused-vars
   const appURI = ''; // 배포된 서비스 도메인
   const localURI = window.location.href; // localhost:3000
+  const [data, setData]=useState();
 
   useEffect(() => {
     Kakao.cleanup();
     Kakao.init('2876a318025229258708805024d1db25'); // js키
     console.log(Kakao.isInitialized()); // 잘 적용되면 true 반환
 
-    console.log('receieved on Result: ', receiveData);
+
+    //api
+    const fetchData=async()=>{
+      try {
+        // 서버 url
+        const serverUrl='http://127.0.0.1:8000/';
+        const endpoint='v1/result';
+
+        const response=await axios.post(`${serverUrl}${endpoint}`, receivedData);
+        setData(response.data);
+  
+      } catch(error){
+        console.error(error);
+      }
+    };
+    fetchData();
   }, []);
 
   const shareKakao = async () => {
@@ -90,24 +108,6 @@ const Result = () => {
     }
   };
 
-  // api
-  // const [data, setData]=useState({});
-  // useEffect(()=>{
-  //   const fetchData=async()=>{
-  //     try {
-  //       // 서버 url
-  //       const serverUrl='http://127.0.0.1:8000/';
-  //       const endpoint='api/v1/result';
-
-  //       const response=await axios.get(`${serverUrl}${endpoint}`);
-  //       setData(response.data);
-
-  //     } catch(error){
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchData();
-  // },[])
 
   return (
     <Wrapper className="wrap">
@@ -121,12 +121,12 @@ const Result = () => {
           <div className="div-1">
             <h3>나에게 꼭 맞는 위스키는</h3>
             <MainImgDiv>
-              {/* <img src={data.whiskey_image} className='whiskey'></img> */}
-              <img src={whiskey} className="whiskey"></img>
+              <img src={data.wiskey_image} className='whiskey'></img>
+              {/* <img src={whiskey} className='whiskey'></img> */}
             </MainImgDiv>
-            <div className="resultTxt">
-              {/* <h3 className='name'>{data.name}</h3>
-              <p>{data.description}</p> */}
+            <div className='resultTxt'>
+              <h3 className='name'>{data.name}</h3>
+              <p>{data.description}</p>
             </div>
           </div>
           <div className="div-2">
@@ -136,10 +136,10 @@ const Result = () => {
                 <p>Flavor &amp; Aroma</p>
                 <img src={titlegraphic}></img>
               </div>
-              <div className="pics">
-                {/* {data.flavor_images.map((image, index)=>(
+              <div className='pics'>
+                {data.flavor_images.map((image, index)=>(
                   <img key={index} src={image}></img>
-                ))} */}
+                ))}
               </div>
             </Description>
             <Description>
@@ -148,10 +148,10 @@ const Result = () => {
                 <p>How to drink?</p>
                 <img src={titlegraphic}></img>
               </div>
-              <div className="pics">
-                {/* {data.drink_images.map((image, index)=>(
+              <div className='pics'>
+              {data.drink_images.map((image, index)=>(
                   <img key={index} src={image}></img>
-                ))} */}
+                ))}
               </div>
             </Description>
           </div>
@@ -380,29 +380,35 @@ const Mag = styled.div`
   }
 `;
 
-const TestAgainBtn = styled.button`
-  width: 318px;
-  height: 55px;
-  padding: 1.5rem;
-  background: #785440;
+const TestAgainBtn=styled.button`
+width: 318px;
+height: 55px;
+// padding: 1.5rem;
+background: #785440;
+// color: #fff;
+
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+font-size: 1.125rem;
+font-weight: 700;
+
+border: none;
+border-radius: 15px;
+
+&:hover {
+  cursor: pointer;
+}
+
+a {
   color: #fff;
+  text-decoration: none;
 
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: 1.125rem;
-  font-weight: 700;
+}
+`
 
-  border: none;
-  border-radius: 15px;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-`;
