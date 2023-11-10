@@ -109,6 +109,9 @@ const Wrapper = styled.div`
     color: rgba(51, 51, 51, 0.9);
     margin-top: 40px;
     margin-bottom: 20px;
+    @media screen and (max-width: 500px) {
+      margin-top: 60px;
+    }
   }
 `;
 
@@ -118,12 +121,16 @@ const Logo = styled.img`
 
 const MainImg = styled.img`
   width: 200px;
-  margin-top: 16px;
+  margin-top: 28px;
+  @media screen and (max-width: 500px) {
+    margin-top: 36px;
+  }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 8px;
   button {
     border: none;
     border-radius: 15px;
@@ -146,10 +153,18 @@ const ButtonContainer = styled.div`
   button + button {
     margin-top: 12px;
   }
+  @media screen and (max-width: 500px) {
+    margin-top: 20px;
+  }
 `;
 
 const BottomLogo = styled.img`
-  margin-top: 48px;
+  padding-top: 48px;
   width: 176px;
   height: 18px;
+  position: absolute;
+  bottom: 28px;
+  @media screen and (max-width: 500px) {
+    margin-top: 60px;
+  }
 `;
