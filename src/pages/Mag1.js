@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { BottomLogo, Logo } from './Start';
+import { Logo } from './Start';
 import logo from './assets/logo.svg';
 import prevBtn from './assets/prevBtn.svg';
 import mag1 from './assets/mag1.png';
@@ -122,7 +122,7 @@ const Mag1 = () => {
 };
 
 export default Mag1;
-export { Wrapper, RowImgDiv, TopBar, MagImgDiv, HalfMagImgDiv };
+export { Wrapper, RowImgDiv, TopBar, MagImgDiv, HalfMagImgDiv, BottomLogo };
 
 const RowImgDiv = styled.div`
   display: flex;
@@ -165,6 +165,8 @@ const Wrapper = styled.div`
   }
 
   @media all and (min-width: 431px) {
+    padding-left: 32px;
+    padding-right: 32px;
     h2 {
       margin-top: 5rem;
       font-size: 2.25rem;
@@ -240,4 +242,10 @@ const HalfMagImgDiv = styled(MagImgDiv)`
     width: 25.93rem;
     height: 25.93rem;
   }
+`;
+
+const BottomLogo = styled.img`
+  padding-top: 72px;
+  width: 176px;
+  height: 18px;
 `;

@@ -130,7 +130,7 @@ const Result = () => {
                 <p>Flavor &amp; Aroma</p>
                 <img src={titlegraphic}></img>
               </div>
-              <div className="pics">
+              <div className="flavor-pics">
                 {resultData?.flavor_images &&
                   resultData.flavor_images.map((image, index) => (
                     <img key={index} src={image}></img>
@@ -146,7 +146,9 @@ const Result = () => {
               <div className="pics">
                 {resultData?.drink_images &&
                   resultData.drink_images.map((image, index) => (
-                    <img key={index} src={image}></img>
+                    <div key={index} className="imgContainer">
+                      <img src={image}></img>
+                    </div>
                   ))}
               </div>
             </Description>
@@ -156,7 +158,7 @@ const Result = () => {
       <CtrlDiv className="ctrlDiv">
         <div onClick={onImgDownload}>
           <img src={save}></img>
-          <p>이미지로 저장</p>
+          <p>이미지로 저장하기</p>
         </div>
         <div>
           <img
@@ -173,7 +175,7 @@ const Result = () => {
         </div>
         <div>
           <img src={kakao} onClick={shareKakao}></img>
-          <p>카카오톡으로 공유하기</p>
+          <p>카카오톡 친구에게 공유하기</p>
         </div>
       </CtrlDiv>
       <div className="magDiv">
@@ -248,6 +250,10 @@ const Wrapper = styled.div`
     }
   }
 
+  .rowDiv {
+    margin-top: 40px;
+  }
+
   h3 {
     color: #333;
     font-size: 1.5rem;
@@ -303,6 +309,27 @@ const Description = styled.div`
 
     img {
       margin: 0 0.5rem;
+      width: 24px;
+    }
+  }
+
+  .flavor-pics {
+    width: 100%;
+    height: 13rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+
+    background: rgba(225, 186, 101, 0.7);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      min-width: 0;
+      margin: 0 0.5rem;
     }
   }
 
@@ -320,9 +347,16 @@ const Description = styled.div`
     justify-content: center;
     align-items: center;
 
-    img {
-      min-width: 0;
+    .imgContainer {
+      // width: 80%;
+      height: 80%;
       margin: 0 0.5rem;
+
+      img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `;
@@ -345,11 +379,15 @@ const CtrlDiv = styled.div`
       cursor: pointer;
     }
   }
+
+  p {
+    font-size: 0.8rem;
+  }
 `;
 
 const Mag = styled.div`
-  width: 307px;
-  height: 219px;
+  width: 288px;
+  height: 216px;
   border-radius: 20px;
   text-align: center;
   background-color: white;
@@ -363,7 +401,7 @@ const Mag = styled.div`
 
   img {
     object-fit: cover;
-    height: 169px;
+    height: 160px;
   }
 
   div {
@@ -377,6 +415,7 @@ const Mag = styled.div`
 `;
 
 const TestAgainBtn = styled.button`
+  margin-top: 28px;
   width: 318px;
   height: 55px;
   padding: 1.5rem;
@@ -400,11 +439,19 @@ const TestAgainBtn = styled.button`
   a {
     color: #fff;
     text-decoration: none;
+    line-height: 22px;
+    font-weight: 600;
+    padding-bottom: 2px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+    padding-top: 1px;
   }
 `;
 
 const BottomLogo = styled.img`
-  padding-top: 48px;
+  padding-top: 72px;
   width: 176px;
   height: 18px;
 `;
